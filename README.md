@@ -1,4 +1,4 @@
-
+# Form Builder Application
 <details>
 <summary><strong>Project Overview</strong></summary>
 
@@ -9,9 +9,8 @@
     background-color: #f9f9f9;
     border-radius: 5px;
 ">
-  <h4>This is your popup card content!</h4>
   <p><details>
-<summary><strong>Click to see the popup content</strong></summary>
+<summary><strong>View Project Details</strong></summary>
 
 <div style="
     border: 1px solid #ddd;
@@ -26,9 +25,9 @@
 
   - ### Tech Stack
   <ol> 
-       Frontend: TypeScript + React 
+        Frontend: TypeScript + React 
 
-         Backend: Django Rest Framework
+        Backend: Django Rest Framework
 
         Database: PostgreSQL
 
@@ -78,8 +77,7 @@
 </div>
 
 </details>
-p>
 </div>
 
 </details>
-# form-builder-application
+
