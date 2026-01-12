@@ -9,7 +9,8 @@
     background-color: #f9f9f9;
     border-radius: 5px;
 ">
-  <p><details>
+  <p>
+  <details>
 <summary><strong>View Project Details</strong></summary>
 
 <div style="
@@ -25,7 +26,7 @@
 
   - ### Tech Stack
   <ol> 
-        Frontend: TypeScript + React 
+        Frontend: JavaScript + React 
 
         Backend: Django Rest Framework
 
