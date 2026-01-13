@@ -32,7 +32,7 @@ export default function LandingPage() {
             </p>
 
             <div className="mt-10 flex gap-4">
-            <button className="inline-flex items-center gap-2 rounded-full bg-purple-900 px-8 py-3 text-white font-medium hover:bg-purple-800 transition cursor-pointer" onClick={() => navigate(isAuthenticated ? '/formly': "/singup")}>
+            <button className="inline-flex items-center gap-2 rounded-full bg-purple-900 px-8 py-3 text-white font-medium hover:bg-purple-800 transition cursor-pointer" onClick={() => navigate(isAuthenticated ? '/formly': "/signup")}>
                 Get Started
                 <ArrowRight size={18} />
             </button>
