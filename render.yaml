@@ -1,28 +1,28 @@
 databases:
-    -name: formlydb
-    plan: free
-    databaseName: formly
-    user: Formly
+    - name: formlydb
+      plan: free
+      databaseName: formly
+      user: Formly
 
 services:
-    -type: web
-    plan: free
-    name: Formly
-    runtime: python
-    buildCommand: './backend/core/build.sh'
-    startCommand: 'python -m gunicorn Formly.asgi:application -k uvicorn.worker.UvicornWorker'
-    envVars:
-      -key : DATABASE_URL
-      fromDatabase:
-        name: Formly
-        property: connectionString
-        
-      -key: SECRET_KEY
+    - type: web
+      plan: free
+      name: Formly
+      runtime: python
+      buildCommand: './backend/core/build.sh'
+      startCommand: 'python -m gunicorn Formly.asgi:application -k uvicorn.worker.UvicornWorker'
+      envVars:
+        - key : DATABASE_URL
+          fromDatabase:
+            name: Formly
+            property: connectionString
+          
+        - key: SECRET_KEY
 
-      generateValue: true
+          generateValue: true
 
-      -key: WEB_CONCURRENCY
+        - key: WEB_CONCURRENCY
 
-      value: 4
+          value: 4
       
 
