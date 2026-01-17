@@ -9,7 +9,7 @@ services:
       plan: free
       name: Formly
       runtime: python
-      buildCommand: './backend/core/build.sh'
+      buildCommand: './core/build.sh'
       startCommand: 'gunicorn core.asgi:application'
       envVars:
         - key : DATABASE_URL

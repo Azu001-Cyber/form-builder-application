@@ -1,6 +1,6 @@
 
 set -o errexit
 
-pip install -r backend/requirements.txt
+pip install -r ./requirements.txt
 
-python backend/core/manage.py migrate
+python ./core/manage.py migrate
