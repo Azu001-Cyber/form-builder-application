@@ -17,10 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from api.views import GoogleAuthView
+from django.http import JsonResponse
+
+def health(request):
+    return JsonResponse({"status": "ok"})
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", health),
     path('api/', include('api.urls')),
     path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
