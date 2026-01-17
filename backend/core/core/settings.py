@@ -22,21 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-(+4g1a0-5xb-hmm25i%0z$*ps5q5-@z8*wxs((7j4@-sx11wby'
+SECRET_KEY = 'django-insecure-(+4g1a0-5xb-hmm25i%0z$*ps5q5-@z8*wxs((7j4@-sx11wby'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
-DEBUG = 'RENDER' not in os.environ
-
-SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-(+4g1a0-5xb-hmm25i%0z$*ps5q5-@z8*wxs((7j4@-sx11wby')
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,7 +54,7 @@ from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15), 
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=3), 
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
@@ -154,9 +146,9 @@ STATIC_URL = 'static/'
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://formly-rho.vercel.app",
+    "http://localhost:5173"
+    # "https://www.yourfrontend.com",
 ]

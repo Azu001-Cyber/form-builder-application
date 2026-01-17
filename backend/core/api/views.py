@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from .serializers import SignupSerializer, EmailTokenObtainPairSerializer
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView
-
+# Create your views here.
 
 # Authentication
 
@@ -84,44 +84,3 @@ class GoogleAuthView(APIView):
                 {"error":"Invalid Google token"},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
-
-from rest_framework import viewsets
-from .models import Form, Question, Options, Responses, Answer   
-from .serializers import (
-    FormSerializer,
-    QuestionSerializer,
-    OptionSerializer,
-    ResponseSerializer,
-    AnswerSerializer,
-)
-from .permissions import IsOwnerOrReadOnly
-from rest_framework.permissions import IsAuthenticated, AllowAny
-
-class FormViewSet(viewsets.ModelViewSet): 
-    queryset = Form.objects.all() 
-    serializer_class = FormSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-class QuestionViewSet(viewsets.ModelViewSet): 
-    queryset = Question.objects.all() 
-    serializer_class = QuestionSerializer
-    permission_classes = [IsAuthenticated]
-
-class OptionViewSet(viewsets.ModelViewSet): 
-    queryset = Options.objects.all() 
-    serializer_class = OptionSerializer
-    permission_classes = [IsAuthenticated]
-
-class ResponseViewSet(viewsets.ModelViewSet): 
-    queryset = Responses.objects.all() 
-    serializer_class = ResponseSerializer
-    permission_classes = [AllowAny]
-
-class AnswerViewSet(viewsets.ModelViewSet): 
-    queryset = Answer.objects.all() 
-    serializer_class = AnswerSerializer
-    permission_classes = [AllowAny]
