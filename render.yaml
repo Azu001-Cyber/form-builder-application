@@ -10,7 +10,7 @@ services:
       name: Formly
       runtime: python
       buildCommand: './backend/core/build.sh'
-      startCommand: 'gunicorn Formly.asgi:application -k'
+      startCommand: 'gunicorn core.asgi:application'
       envVars:
         - key : DATABASE_URL
           fromDatabase:
