@@ -1,8 +1,8 @@
 databases:
     - name: formlydb
       plan: free
-      databaseName: formly
-      user: Formly
+      databaseName: formlydb
+      user: formly
 
 services:
     - type: web
