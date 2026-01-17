@@ -28,16 +28,16 @@ export default function LandingPage() {
             </h1>
 
             <p className="mt-6 text-lg text-gray-600 max-w-2xl">
-            Build surveys and quizzes in minutes — no complexity, no fuss
+            Build surveys and quizzes in minutes. No complexity
             </p>
 
             <div className="mt-10 flex gap-4">
-            <button className="inline-flex items-center gap-2 rounded-full bg-purple-900 px-8 py-3 text-white font-medium hover:bg-purple-800 transition cursor-pointer" onClick={() => navigate(isAuthenticated ? '/formly': "/signup")}>
+            <button className="inline-flex items-center gap-2 rounded-full bg-purple-900 px-8 py-3 text-white font-medium hover:bg-purple-800 transition duration-200 ease-in cursor-pointer text-nowrap" onClick={() => navigate(isAuthenticated ? '/formly': "/signup")}>
                 Get Started
                 <ArrowRight size={18} />
             </button>
 
-            <button className="rounded-full border border-gray-300 px-8 py-3 font-medium text-gray-900 hover:bg-purple-900 transition  cursor-pointer">
+            <button className="rounded-full border border-gray-300 px-8 py-3 font-medium text-gray-900 hover:bg-purple-900  hover:text-white transition duration-300 ease-in-out cursor-pointer text-nowrap">
                 View Demo
             </button>
             </div>
