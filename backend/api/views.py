@@ -84,3 +84,53 @@ class GoogleAuthView(APIView):
                 {"error":"Invalid Google token"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+# views.py
+from rest_framework import viewsets, permissions
+from .permissions import IsOwnerOrReadOnly
+from .models import Form, Question, Options, Responses, Answer
+from .serializers import (
+    FormSerializer,
+    QuestionSerializer,
+    OptionSerializer,
+    ResponseSerializer,
+    AnswerSerializer,
+)
+
+# Form ViewSet
+class FormViewSet(viewsets.ModelViewSet):
+    queryset = Form.objects.all().order_by("-created_at")
+    serializer_class = FormSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        # Automatically set the owner to the logged-in user
+        serializer.save(owner=self.request.user)
+
+
+# Question ViewSet
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all().order_by("order")
+    serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+# Options ViewSet
+class OptionViewSet(viewsets.ModelViewSet):
+    queryset = Options.objects.all().order_by("order")
+    serializer_class = OptionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+# Responses ViewSet
+class ResponseViewSet(viewsets.ModelViewSet):
+    queryset = Responses.objects.all().order_by("-submitted_at")
+    serializer_class = ResponseSerializer
+    permission_classes = [permissions.AllowAny]  # allow public form submissions
+
+
+# Answer ViewSet
+class AnswerViewSet(viewsets.ModelViewSet):
+    queryset = Answer.objects.all().order_by("-created_at")
+    serializer_class = AnswerSerializer
+    permission_classes = [permissions.IsAuthenticated]

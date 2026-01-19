@@ -30,7 +30,7 @@ DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['formly-j875.onrender.com', 
-                '127.0.0.1']
+                '127.0.0.1', 'localhost']
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
