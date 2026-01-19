@@ -5,7 +5,15 @@ from rest_framework.routers import DefaultRouter
 from .views import SignupView, EmailLoginView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .views import GoogleAuthView
-from .views import ( EmailLoginView, SignupView, GoogleAuthView, FormViewSet, OptionViewSet, ResponseViewSet,AnswerViewSet, QuestionViewSet)
+from .views import ( EmailLoginView, 
+                    SignupView, 
+                    GoogleAuthView, 
+                    FormViewSet, 
+                    OptionViewSet, 
+                    ResponseViewSet,
+                    AnswerViewSet, 
+                    QuestionViewSet)
+
 # Create router and register viewsets 
 router = DefaultRouter() 
 router.register(r"forms", FormViewSet, basename="forms"),

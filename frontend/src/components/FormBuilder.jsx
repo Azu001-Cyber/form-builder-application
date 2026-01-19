@@ -18,6 +18,7 @@ const FormBuilder = ({ token }) => {
             question_type: "short",
             required: false,
             options: [],
+            answers: [],
         },
         ]);
     };
@@ -104,16 +105,26 @@ const FormBuilder = ({ token }) => {
                 },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
+
             }
-        }
 
-        alert("Form created successfully!");
-        } catch (err) {
+            for (const ans of q.answers || []){
+                await axios.post(
+                    "http://localhost:8000/api/answers/",
+                    {
+                        question_id: questionId, 
+                        answer_text: ans.answer_text,
+                    },
+                    {headers:{Authorization:`Bearer ${token}`}}
+                );
+            }
+            alert('Form created successfully');
+        }
+    }catch(err){
         console.error(err);
-        alert("Error creating form");
-        }
-    };
-
+        alert("Error creating form ")
+    }
+};
     return (
         <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
 
@@ -181,6 +192,23 @@ const FormBuilder = ({ token }) => {
                 <span> Required?</span>
             </label>
 
+            {(q.question_type === "short" || q.question_type === "paragraph") && ( 
+                <div className="mt-3"> 
+                    <h4 className="text-lg font-medium mb-2 text-gray-700">Answer</h4> 
+                    <textarea 
+                    placeholder={ q.question_type === "short" ? 
+                        "Short answer text" : "Paragraph answer text" 
+
+                    }
+                    value={q.answers?.[0]?.answer_text || ""} 
+                    onChange={(e) => updateQuestion(q.id, "answers", 
+                        [{ answer_text: e.target.value }]) 
+                    }
+                    className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-purple-700 focus:outline-none"
+                    rows={q.question_type === "paragraph" ? 4 : 1} />
+                </div> 
+            )} 
+            
             {(q.question_type === "mcq" || q.question_type === "checkbox") && (
                 <div className="mt-3">
                 <h4 className="text-lg font-medium mb-2 text-gray-700">Options</h4>
