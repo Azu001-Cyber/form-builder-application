@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { getForms } from "../formApi"
+import { getForms } from "../api"
 
 const FormList = () => {
     const [forms, setForms] = useState([]);

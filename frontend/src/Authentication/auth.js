@@ -1,13 +1,13 @@
 
 import axios from "axios";
 
-const authBase = "http://localhost:8000/api/auth";
+const authBase = "http://localhost:8000";
 
 export async function refreshToken() {
     const refresh = localStorage.getItem("refresh");
     if (!refresh) return null;
     try{
-        const { data } = await axios.post(`${authBase}/refresh/`, { refresh });
+        const { data } = await axios.post(`${authBase}/api/auth/refresh/`, { refresh });
         localStorage.setItem("access", data.access);
         return data.access;
 

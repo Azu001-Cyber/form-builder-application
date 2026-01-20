@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import Form, Question, Options, Responses, Answer, CustomUser
-from rest_framework_simplejwt.serializers import TokenObtainSlidingSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class EmailTokenObtainPairSerializer(TokenObtainSlidingSerializer):
+class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = 'email'
 
 
@@ -48,7 +48,8 @@ class FormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Form
-        fields = "__all__"
+        fields = ["title", "description", "is_quiz", "is_published"]
+        read_only_fields = ["owner"]
 
     def create(self, validated_data):
         questions_data = validated_data.pop("questions", [])

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import {getForm, submitResponse} from "../formApi";
+import {getForm, submitResponse} from "../api";
 import { useParams } from "react-router-dom";
 
 const FormDetail = () => {

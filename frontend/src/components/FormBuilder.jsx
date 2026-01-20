@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CreateForm from "../CreateForm"; // your API helper
-import axios from "axios";
+// import CreateForm from "../CreateForm"; // your API helper
+import api, {createForm} from "../api";
 
-const FormBuilder = ({ token }) => {
+const FormBuilder = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [isQuiz, setIsQuiz] = useState(false);
@@ -73,55 +73,52 @@ const FormBuilder = ({ token }) => {
     const handleSubmit = async () => {
         try {
         // Step 1: Create form
-        const formRes = await CreateForm(
-            { title, description, is_quiz: isQuiz },
-            token
+        const formRes = await createForm(
+            { title, description, is_quiz: isQuiz, is_published:true },
         );
         const formId = formRes.data.id;
 
         // Step 2: Create questions
         for (const q of questions) {
-            const questionRes = await axios.post(
+            const questionRes = await api.post(
             "http://localhost:8000/api/questions/",
             {
                 form_id: formId,
                 question_text: q.question_text,
                 question_type: q.question_type,
                 required: q.required,
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
             );
 
             const questionId = questionRes.data.id;
 
             // Step 3: Create options (if applicable)
             for (const opt of q.options) {
-            await axios.post(
+            await api.post(
                 "http://localhost:8000/api/options/",
                 {
                 question_id: questionId,
                 option_text: opt.option_text,
                 is_correct: opt.is_correct,
                 },
-                { headers: { Authorization: `Bearer ${token}` } }
             );
 
             }
 
             for (const ans of q.answers || []){
-                await axios.post(
+                await api.post(
                     "http://localhost:8000/api/answers/",
                     {
                         question_id: questionId, 
                         answer_text: ans.answer_text,
                     },
-                    {headers:{Authorization:`Bearer ${token}`}}
                 );
             }
             alert('Form created successfully');
         }
     }catch(err){
         console.error(err);
+        console.log(err.response.data)
         alert("Error creating form ")
     }
 };

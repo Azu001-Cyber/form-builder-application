@@ -16,7 +16,7 @@ function Login () {
       // Access the classes using dot notation (styles.button)
      //  return <button className={styles.button}>Click Me</button>;
     const navigate = useNavigate();
-    const [form, setForm] = useState({username:"", password:""});
+    const [form, setForm] = useState({email:"", password:""});
     const [error, setError] = useState("");
 
     const onChange = (e) => setForm({...form, [e.target.name]: e.target.value});
@@ -24,7 +24,7 @@ function Login () {
     const onSubmit = async (e) => {
         e.preventDefault();
         try{
-            const { data} = await axios.post(`${URL}/api/login/user`, form);
+            const { data} = await axios.post(`${URL}/api/login/user/`, form);
             // Store tokens: 
             localStorage.setItem("access", data.access);
             localStorage.setItem("refresh", data.refresh);

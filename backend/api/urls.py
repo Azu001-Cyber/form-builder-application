@@ -23,8 +23,8 @@ router.register(r"answers", AnswerViewSet, basename="answers"),
 router.register(r"questions", QuestionViewSet, basename='questions')
 
 # Combine manual paths with router URLs 
-urlpatterns = [ path("login/user", EmailLoginView.as_view(), name="login"),
-                path("register/user", SignupView.as_view(), name="register"), 
+urlpatterns = [ path("login/user/", EmailLoginView.as_view(), name="login"),
+                path("register/user/", SignupView.as_view(), name="register"), 
                 path("refresh/", TokenObtainPairView.as_view(), name="token_refresh"), 
                 path("auth/google/", GoogleAuthView.as_view()), 
                 path("", include(router.urls)), 
