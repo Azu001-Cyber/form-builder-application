@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: "http://localhost:8000/api",
     });
 
     // Attach access token automatically
@@ -18,12 +18,12 @@ const api = axios.create({
     );
 
     // ---------- API HELPERS ----------
-    export const getForms = () => api.get("forms/");
-    export const getForm = (id) => api.get(`forms/${id}/`);
-    export const submitResponse = (formId, data) =>
-    api.post(`forms/${formId}/responses/`, data);
+    export const getForms = () => api.get("/forms/");
+    export const getForm = (id) => api.get(`/forms/${id}/`);
+    export const submitResponse = (data) =>
+    api.post('/responses/', data);
 
     export const createForm = (formData) =>
-    api.post("forms/", formData);
+    api.post("/forms/", formData);
 
 export default api;

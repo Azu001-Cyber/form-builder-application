@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'api',
     # Third-party
     'rest_framework',
+    "rest_framework_simplejwt",
     'corsheaders'
 ]
 # settings.py

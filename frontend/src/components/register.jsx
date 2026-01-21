@@ -1,10 +1,10 @@
 
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import api from '../api';
 import { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-const URL = "http://127.0.0.1:8000";
+
 
 function Register(){
     const [message, SetMessage] = useState("");
@@ -19,7 +19,7 @@ function Register(){
     const handelSubmit = async (e) => {
         e.preventDefault();
         try{
-            await axios.post(`${URL}/api/register/user`, FormData);
+            await api.post('/register/user', FormData);
             SetMessage("Signup Successful!")
         }catch{
             setError("Something went wrong.");
@@ -28,8 +28,8 @@ function Register(){
        // GOOGLE HANDLER
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-        const { data } = await axios.post(
-            `${URL}/api/auth/google/`,
+        const { data } = await api.post(
+            '/auth/google/',
             {
             token: credentialResponse.credential,
             }

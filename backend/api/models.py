@@ -57,7 +57,7 @@ class Question(models.Model):
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    form_id = models.ForeignKey(Form, on_delete=models.CASCADE, related_name="questions")
+    form = models.ForeignKey(Form, on_delete=models.CASCADE, related_name="questions")
     question_text = models.TextField()
     question_type = models.CharField(choices=QUESTION_TYPES, max_length=20)
     required = models.BooleanField(default=False)
@@ -71,7 +71,7 @@ class Question(models.Model):
 
 class Options(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="options")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="options")
     option_text = models.CharField(max_length=255)
     is_correct = models.BooleanField(default=False)
     order = models.PositiveIntegerField(default=0)
@@ -81,15 +81,15 @@ class Options(models.Model):
     
 class Responses(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    form_id = models.ForeignKey(Form, on_delete=models.CASCADE, related_name="responses")
+    form = models.ForeignKey(Form, on_delete=models.CASCADE, related_name="responses")
     submitted_at = models.DateTimeField(auto_now_add=True)
     score = models.IntegerField(null=True, blank=True)
 
 
 class Answer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    response_id = models.ForeignKey(Responses, on_delete=models.CASCADE, related_name="answers")
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    response = models.ForeignKey(Responses, on_delete=models.CASCADE, related_name="answers")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text = models.TextField(blank=True, null=True)
-    selected_option_id = models.ForeignKey(Options, on_delete=models.SET_NULL, null=True, blank=True)
+    option = models.ForeignKey(Options, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -18,9 +18,9 @@ const FormDetail = () => {
 
     const handleSubmit = () => {
         const responseData = {
-        form_id: id,
+        form: id,
         answers: Object.entries(answers).map(([questionId, answerText]) => ({
-            question_id: questionId,
+            question: questionId,
             answer_text: answerText,
         })),
         };

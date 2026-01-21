@@ -46,7 +46,13 @@ function App() {
             
             } />
 
-        <Route path='/' element={<LandingPage/>}/>       
+        <Route path='/' element={<LandingPage/>}/>    
+
+        <Route path="/formly/main" element={
+          <ProtectedRoute>
+
+          </ProtectedRoute>
+        }/>
       </Routes>
     </Router>
   );
