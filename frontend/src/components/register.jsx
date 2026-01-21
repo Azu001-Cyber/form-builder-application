@@ -19,7 +19,7 @@ function Register(){
     const handelSubmit = async (e) => {
         e.preventDefault();
         try{
-            await api.post('/api/register/user', FormData);
+            await api.post('/api/register/user/', FormData);
             SetMessage("Signup Successful!")
         }catch{
             setError("Something went wrong.");
