@@ -85,7 +85,7 @@ function Login () {
 
 
             <div className=''>
-                <form action="" method='post' className='flex flex-col' onSubmit={onSubmit}>
+                <form method='post' className='flex flex-col' onSubmit={onSubmit}>
 
                     <label htmlFor="email"  className='text-start text-gray-700'>Your Email</label>
                     <input type="email" name='email' id='email' className='border rounded-xl text-gray-400 p-3' onChange={onChange}/>

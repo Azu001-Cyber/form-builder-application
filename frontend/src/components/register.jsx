@@ -76,7 +76,7 @@ function Register(){
             </div>
 
             <div className=''>
-                <form action="" method='POST' className='flex flex-col' onSubmit={handelSubmit}>
+                <form  method='POST' className='flex flex-col' onSubmit={handelSubmit}>
                     <label htmlFor="email" className='text-start text-gray-700'>Email</label>
                     <input type="email" id='email' name='email' className='border rounded-xl text-gray-400 p-3' onChange={handelChange} />
 
