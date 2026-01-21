@@ -37,7 +37,7 @@ function Register(){
 
         localStorage.setItem("access", data.access);
         localStorage.setItem("refresh", data.refresh);
-        navigate("/");
+        navigate("/login");
         } catch {
         setError("Something went wrong.");
         }
