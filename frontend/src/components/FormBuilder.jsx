@@ -83,7 +83,7 @@ const FormBuilder = () => {
             const questionRes = await api.post(
             "/api/questions/",
             {
-                form_id: formId,
+                form: formId,
                 question_text: q.question_text,
                 question_type: q.question_type,
                 required: q.required,
