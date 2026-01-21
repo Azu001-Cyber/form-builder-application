@@ -19,7 +19,7 @@ function Register(){
     const handelSubmit = async (e) => {
         e.preventDefault();
         try{
-            await api.post('/register/user', FormData);
+            await api.post('/api/register/user', FormData);
             SetMessage("Signup Successful!")
         }catch{
             setError("Something went wrong.");
@@ -29,7 +29,7 @@ function Register(){
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
         const { data } = await api.post(
-            '/auth/google/',
+            '/api/auth/google/',
             {
             token: credentialResponse.credential,
             }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: "https://formly-j875.onrender.com",
     });
 
     // Attach access token automatically
@@ -18,12 +18,12 @@ const api = axios.create({
     );
 
     // ---------- API HELPERS ----------
-    export const getForms = () => api.get("/forms/");
-    export const getForm = (id) => api.get(`/forms/${id}/`);
+    export const getForms = () => api.get("/api/forms/");
+    export const getForm = (id) => api.get(`/api/forms/${id}/`);
     export const submitResponse = (data) =>
-    api.post('/responses/', data);
+    api.post('/api/responses/', data);
 
     export const createForm = (formData) =>
-    api.post("/forms/", formData);
+    api.post("/api/forms/", formData);
 
 export default api;

@@ -25,11 +25,11 @@ function Login () {
     const onSubmit = async (e) => {
         e.preventDefault();
         try{
-            const { data} = await api.post('/login/user/', form);
+            const { data} = await api.post('/api/login/user/', form);
             // Store tokens: 
             localStorage.setItem("access", data.access);
             localStorage.setItem("refresh", data.refresh);
-            navigate("http://localhost:5173/")
+            navigate("/")
         }catch{
             setError("Invalid credentials.")
         }
@@ -39,7 +39,7 @@ function Login () {
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
         const { data } = await api.post(
-            '/auth/google/',
+            '/api/auth/google/',
             {
             token: credentialResponse.credential,
             }
