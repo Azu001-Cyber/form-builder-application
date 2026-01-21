@@ -81,7 +81,7 @@ const FormBuilder = () => {
         // Step 2: Create questions
         for (const q of questions) {
             const questionRes = await api.post(
-            "/questions/",
+            "/api/questions/",
             {
                 form_id: formId,
                 question_text: q.question_text,
@@ -107,7 +107,7 @@ const FormBuilder = () => {
 
             for (const ans of q.answers || []){
                 await api.post(
-                    "/answers/",
+                    "/api/answers/",
                     {
                         question_id: questionId, 
                         answer_text: ans.answer_text,
